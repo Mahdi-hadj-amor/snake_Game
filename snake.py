@@ -18,7 +18,30 @@ def main (stdscr):
     ]
     # creat food of snake and the position in intreface 
     food = [scner_height//2,scner_width//2]
-    window.addch(food[0],food[1],curses.ACS_DIAMOND)# added and desplay food in inteface
-    
+    window.addch(food[0],food[1],curses.ACS_DIAMOND)# added and desplay food in inteface 
+    # added key  for direction of snake 
+    key = curses.KEY_LEFT()
+    while True : 
+        next_key = window.getch()
+        key=key if next_key == -1 else next_key
+
+        head_y,head_x=snake[0]
+        if head_y in [scner_height-1,0]or head_x in [0,scner_width] or snake[0]in snake[1:] :
+            curses.endwin()
+            break
+        
+    new_head= [head_y,head_x]
+    if key == curses.KEY_DOWN:
+        head_y +=1
+    elif key == curses.KEY_UP:
+        head_y -=1
+    elif key == curses.KEY_LEFT:
+        head_x -=1
+    elif key == curses.KEY_RIGHT:
+        head_x +=1
+        
+
+
+
 
 
